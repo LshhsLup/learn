@@ -1,0 +1,1 @@
+/usr/bin/g++ -fPIC -g -shared -Wl,-soname,liblog_system.so -o ../lib/liblog_system.so CMakeFiles/log_system.dir/lsh/log.cpp.o CMakeFiles/log_system.dir/lsh/util.cpp.o 

@@ -1,0 +1,4 @@
+2025-03-12 23:07:54  18562  18562  0  [ERROR]  [root]  /home/lsh/server_framework/tests/log/test.cpp:28  An error occurred!
+2025-03-12 23:07:54  18562  18562  0  [ERROR]  [root]  /home/lsh/server_framework/tests/log/test.cpp:29  hahahhmish
+2025-03-12 23:07:54  18562  18562  0  [ERROR]  [root]  /home/lsh/server_framework/tests/log/test.cpp:34  Fatal error: code=-1
+2025-03-12 23:07:54  18562  18562  0  [ERROR]  [root]  /home/lsh/server_framework/tests/log/test.cpp:35  Fatal error: code=-1

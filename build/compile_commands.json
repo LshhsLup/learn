@@ -1,0 +1,42 @@
+[
+{
+  "directory": "/home/lsh/server_framework/build",
+  "command": "/usr/bin/g++ -Dlsh_EXPORTS -I/home/lsh/server_framework/lsh -I/home/lsh/yaml/yaml-cpp/include -g -fPIC -std=gnu++20 -o CMakeFiles/lsh.dir/lsh/config.cpp.o -c /home/lsh/server_framework/lsh/config.cpp",
+  "file": "/home/lsh/server_framework/lsh/config.cpp"
+},
+{
+  "directory": "/home/lsh/server_framework/build",
+  "command": "/usr/bin/g++ -Dlsh_EXPORTS -I/home/lsh/server_framework/lsh -I/home/lsh/yaml/yaml-cpp/include -g -fPIC -std=gnu++20 -o CMakeFiles/lsh.dir/lsh/log.cpp.o -c /home/lsh/server_framework/lsh/log.cpp",
+  "file": "/home/lsh/server_framework/lsh/log.cpp"
+},
+{
+  "directory": "/home/lsh/server_framework/build",
+  "command": "/usr/bin/g++ -Dlsh_EXPORTS -I/home/lsh/server_framework/lsh -I/home/lsh/yaml/yaml-cpp/include -g -fPIC -std=gnu++20 -o CMakeFiles/lsh.dir/lsh/thread.cpp.o -c /home/lsh/server_framework/lsh/thread.cpp",
+  "file": "/home/lsh/server_framework/lsh/thread.cpp"
+},
+{
+  "directory": "/home/lsh/server_framework/build",
+  "command": "/usr/bin/g++ -Dlsh_EXPORTS -I/home/lsh/server_framework/lsh -I/home/lsh/yaml/yaml-cpp/include -g -fPIC -std=gnu++20 -o CMakeFiles/lsh.dir/lsh/util.cpp.o -c /home/lsh/server_framework/lsh/util.cpp",
+  "file": "/home/lsh/server_framework/lsh/util.cpp"
+},
+{
+  "directory": "/home/lsh/server_framework/build",
+  "command": "/usr/bin/g++  -I/home/lsh/server_framework/lsh -I/home/lsh/yaml/yaml-cpp/include -g -std=gnu++20 -o CMakeFiles/test.dir/tests/log/test.cpp.o -c /home/lsh/server_framework/tests/log/test.cpp",
+  "file": "/home/lsh/server_framework/tests/log/test.cpp"
+},
+{
+  "directory": "/home/lsh/server_framework/build",
+  "command": "/usr/bin/g++  -I/home/lsh/server_framework/lsh -I/home/lsh/yaml/yaml-cpp/include -g -std=gnu++20 -o CMakeFiles/test_config.dir/tests/log/test_config.cpp.o -c /home/lsh/server_framework/tests/log/test_config.cpp",
+  "file": "/home/lsh/server_framework/tests/log/test_config.cpp"
+},
+{
+  "directory": "/home/lsh/server_framework/build",
+  "command": "/usr/bin/g++  -I/home/lsh/server_framework/lsh -I/home/lsh/yaml/yaml-cpp/include -g -std=gnu++20 -o CMakeFiles/test_thread.dir/tests/test_thread.cpp.o -c /home/lsh/server_framework/tests/test_thread.cpp",
+  "file": "/home/lsh/server_framework/tests/test_thread.cpp"
+},
+{
+  "directory": "/home/lsh/server_framework/build",
+  "command": "/usr/bin/g++  -I/home/lsh/server_framework/lsh -I/home/lsh/yaml/yaml-cpp/include -g -std=gnu++20 -o CMakeFiles/test_util.dir/tests/test_util.cpp.o -c /home/lsh/server_framework/tests/test_util.cpp",
+  "file": "/home/lsh/server_framework/tests/test_util.cpp"
+}
+]

@@ -1,0 +1,1 @@
+/usr/bin/g++ -g CMakeFiles/test_config.dir/tests/log/test_config.cpp.o -o ../bin/test_config   -L/home/lsh/yaml/yaml-cpp/build  -Wl,-rpath,/home/lsh/yaml/yaml-cpp/build:/home/lsh/server_framework/lib ../lib/liblsh.so -lyaml-cpp 
