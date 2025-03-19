@@ -43,14 +43,18 @@ add_executable(test tests/log/test.cpp)
 add_executable(test_config tests/log/test_config.cpp)
 add_executable(test_thread tests/test_thread.cpp)
 add_executable(test_util tests/test_util.cpp)
+add_executable(test_fiber tests/test_fiber.cpp)
 # 添加依赖关系
 add_dependencies(test lsh)
 add_dependencies(test_config lsh)
 add_dependencies(test_thread lsh)
 add_dependencies(test_util lsh)
+add_dependencies(test_fiber lsh)
+
 # 让 test 依赖 lsh yaml-cpp 并正确链接
 target_link_libraries(test  lsh yaml-cpp)
 target_link_libraries(test_config  lsh yaml-cpp)
 target_link_libraries(test_thread lsh yaml-cpp)
 target_link_libraries(test_util lsh yaml-cpp)
+target_link_libraries(test_fiber lsh yaml-cpp)
 
