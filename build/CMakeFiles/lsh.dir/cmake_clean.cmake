@@ -3,6 +3,8 @@ file(REMOVE_RECURSE
   "../lib/liblsh.so"
   "CMakeFiles/lsh.dir/lsh/config.cpp.o"
   "CMakeFiles/lsh.dir/lsh/config.cpp.o.d"
+  "CMakeFiles/lsh.dir/lsh/fiber.cpp.o"
+  "CMakeFiles/lsh.dir/lsh/fiber.cpp.o.d"
   "CMakeFiles/lsh.dir/lsh/log.cpp.o"
   "CMakeFiles/lsh.dir/lsh/log.cpp.o.d"
   "CMakeFiles/lsh.dir/lsh/thread.cpp.o"

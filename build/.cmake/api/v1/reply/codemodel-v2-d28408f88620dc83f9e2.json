@@ -6,7 +6,7 @@
 			[
 				{
 					"build" : ".",
-					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"jsonFile" : "directory-.-f5ebdc15457944623624.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.10"
@@ -19,11 +19,12 @@
 						1,
 						2,
 						3,
-						4
+						4,
+						5
 					]
 				}
 			],
-			"name" : "Debug",
+			"name" : "",
 			"projects" : 
 			[
 				{
@@ -38,7 +39,8 @@
 						1,
 						2,
 						3,
-						4
+						4,
+						5
 					]
 				}
 			],
@@ -47,35 +49,42 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "lsh::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-lsh-Debug-3779fc08c78065d6dde0.json",
+					"jsonFile" : "target-lsh-306c3daf13076993677f.json",
 					"name" : "lsh",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 0,
 					"id" : "test::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-test-Debug-8386389c822effe58a78.json",
+					"jsonFile" : "target-test-f69bc54cee1b5a6df637.json",
 					"name" : "test",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 0,
 					"id" : "test_config::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-test_config-Debug-787993c986796868a6df.json",
+					"jsonFile" : "target-test_config-579bf6d5e73703b16ea5.json",
 					"name" : "test_config",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 0,
+					"id" : "test_fiber::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-test_fiber-3f94a62aff15b44aa444.json",
+					"name" : "test_fiber",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
 					"id" : "test_thread::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-test_thread-Debug-00dfd01cf0dcaa2b4925.json",
+					"jsonFile" : "target-test_thread-5812f0a8d4ee0f1d9a07.json",
 					"name" : "test_thread",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 0,
 					"id" : "test_util::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-test_util-Debug-1b1b2e3bda0def51e072.json",
+					"jsonFile" : "target-test_util-178551a2ca224e434268.json",
 					"name" : "test_util",
 					"projectIndex" : 0
 				}
@@ -85,8 +94,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/home/lsh/server_framework/build",
-		"source" : "/home/lsh/server_framework"
+		"build" : "/home/lsh/server/learn/build",
+		"source" : "/home/lsh/server/learn"
 	},
 	"version" : 
 	{

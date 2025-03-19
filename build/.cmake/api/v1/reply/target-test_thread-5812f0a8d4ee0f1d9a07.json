@@ -2,7 +2,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "/home/lsh/server_framework/lib/liblsh.so"
+			"path" : "/home/lsh/server/learn/bin/test_thread"
 		}
 	],
 	"backtrace" : 1,
@@ -10,8 +10,10 @@
 	{
 		"commands" : 
 		[
-			"add_library",
+			"add_executable",
 			"link_directories",
+			"target_link_libraries",
+			"add_dependencies",
 			"include_directories"
 		],
 		"files" : 
@@ -26,7 +28,7 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 38,
+				"line" : 44,
 				"parent" : 0
 			},
 			{
@@ -38,11 +40,23 @@
 			{
 				"command" : 2,
 				"file" : 0,
+				"line" : 57,
+				"parent" : 0
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 50,
+				"parent" : 0
+			},
+			{
+				"command" : 4,
+				"file" : 0,
 				"line" : 29,
 				"parent" : 0
 			},
 			{
-				"command" : 2,
+				"command" : 4,
 				"file" : 0,
 				"line" : 32,
 				"parent" : 0
@@ -55,26 +69,17 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-g -fPIC"
-				},
-				{
 					"fragment" : "-std=gnu++20"
-				}
-			],
-			"defines" : 
-			[
-				{
-					"define" : "lsh_EXPORTS"
 				}
 			],
 			"includes" : 
 			[
 				{
-					"backtrace" : 3,
-					"path" : "/home/lsh/server_framework/lsh"
+					"backtrace" : 5,
+					"path" : "/home/lsh/server/learn/lsh"
 				},
 				{
-					"backtrace" : 4,
+					"backtrace" : 6,
 					"path" : "/home/lsh/yaml/yaml-cpp/include"
 				}
 			],
@@ -89,14 +94,18 @@
 			},
 			"sourceIndexes" : 
 			[
-				0,
-				1,
-				2,
-				3
+				0
 			]
 		}
 	],
-	"id" : "lsh::@6890427a1f51a3e7e1df",
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 4,
+			"id" : "lsh::@6890427a1f51a3e7e1df"
+		}
+	],
+	"id" : "test_thread::@6890427a1f51a3e7e1df",
 	"link" : 
 	{
 		"commandFragments" : 
@@ -109,12 +118,26 @@
 				"backtrace" : 2,
 				"fragment" : "-L/home/lsh/yaml/yaml-cpp/build",
 				"role" : "libraryPath"
+			},
+			{
+				"fragment" : "-Wl,-rpath,/home/lsh/yaml/yaml-cpp/build:/home/lsh/server/learn/lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "../lib/liblsh.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "-lyaml-cpp",
+				"role" : "libraries"
 			}
 		],
 		"language" : "CXX"
 	},
-	"name" : "lsh",
-	"nameOnDisk" : "liblsh.so",
+	"name" : "test_thread",
+	"nameOnDisk" : "test_thread",
 	"paths" : 
 	{
 		"build" : ".",
@@ -126,10 +149,7 @@
 			"name" : "Source Files",
 			"sourceIndexes" : 
 			[
-				0,
-				1,
-				2,
-				3
+				0
 			]
 		}
 	],
@@ -138,27 +158,9 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "lsh/config.cpp",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"compileGroupIndex" : 0,
-			"path" : "lsh/log.cpp",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"compileGroupIndex" : 0,
-			"path" : "lsh/thread.cpp",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"compileGroupIndex" : 0,
-			"path" : "lsh/util.cpp",
+			"path" : "tests/test_thread.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],
-	"type" : "SHARED_LIBRARY"
+	"type" : "EXECUTABLE"
 }

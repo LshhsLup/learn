@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/lsh/server_framework
+CMAKE_SOURCE_DIR = /home/lsh/server/learn
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/lsh/server_framework/build
+CMAKE_BINARY_DIR = /home/lsh/server/learn/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/lsh/server_framework/build/CMakeFiles /home/lsh/server_framework/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lsh/server/learn/build/CMakeFiles /home/lsh/server/learn/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/lsh/server_framework/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lsh/server/learn/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -181,6 +181,19 @@ test_util/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_util.dir/build.make CMakeFiles/test_util.dir/build
 .PHONY : test_util/fast
 
+#=============================================================================
+# Target rules for targets named test_fiber
+
+# Build rule for target.
+test_fiber: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_fiber
+.PHONY : test_fiber
+
+# fast build rule for target.
+test_fiber/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_fiber.dir/build.make CMakeFiles/test_fiber.dir/build
+.PHONY : test_fiber/fast
+
 lsh/config.o: lsh/config.cpp.o
 .PHONY : lsh/config.o
 
@@ -204,6 +217,30 @@ lsh/config.s: lsh/config.cpp.s
 lsh/config.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lsh.dir/build.make CMakeFiles/lsh.dir/lsh/config.cpp.s
 .PHONY : lsh/config.cpp.s
+
+lsh/fiber.o: lsh/fiber.cpp.o
+.PHONY : lsh/fiber.o
+
+# target to build an object file
+lsh/fiber.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lsh.dir/build.make CMakeFiles/lsh.dir/lsh/fiber.cpp.o
+.PHONY : lsh/fiber.cpp.o
+
+lsh/fiber.i: lsh/fiber.cpp.i
+.PHONY : lsh/fiber.i
+
+# target to preprocess a source file
+lsh/fiber.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lsh.dir/build.make CMakeFiles/lsh.dir/lsh/fiber.cpp.i
+.PHONY : lsh/fiber.cpp.i
+
+lsh/fiber.s: lsh/fiber.cpp.s
+.PHONY : lsh/fiber.s
+
+# target to generate assembly for a file
+lsh/fiber.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lsh.dir/build.make CMakeFiles/lsh.dir/lsh/fiber.cpp.s
+.PHONY : lsh/fiber.cpp.s
 
 lsh/log.o: lsh/log.cpp.o
 .PHONY : lsh/log.o
@@ -325,6 +362,30 @@ tests/log/test_config.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_config.dir/build.make CMakeFiles/test_config.dir/tests/log/test_config.cpp.s
 .PHONY : tests/log/test_config.cpp.s
 
+tests/test_fiber.o: tests/test_fiber.cpp.o
+.PHONY : tests/test_fiber.o
+
+# target to build an object file
+tests/test_fiber.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_fiber.dir/build.make CMakeFiles/test_fiber.dir/tests/test_fiber.cpp.o
+.PHONY : tests/test_fiber.cpp.o
+
+tests/test_fiber.i: tests/test_fiber.cpp.i
+.PHONY : tests/test_fiber.i
+
+# target to preprocess a source file
+tests/test_fiber.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_fiber.dir/build.make CMakeFiles/test_fiber.dir/tests/test_fiber.cpp.i
+.PHONY : tests/test_fiber.cpp.i
+
+tests/test_fiber.s: tests/test_fiber.cpp.s
+.PHONY : tests/test_fiber.s
+
+# target to generate assembly for a file
+tests/test_fiber.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_fiber.dir/build.make CMakeFiles/test_fiber.dir/tests/test_fiber.cpp.s
+.PHONY : tests/test_fiber.cpp.s
+
 tests/test_thread.o: tests/test_thread.cpp.o
 .PHONY : tests/test_thread.o
 
@@ -384,11 +445,15 @@ help:
 	@echo "... lsh"
 	@echo "... test"
 	@echo "... test_config"
+	@echo "... test_fiber"
 	@echo "... test_thread"
 	@echo "... test_util"
 	@echo "... lsh/config.o"
 	@echo "... lsh/config.i"
 	@echo "... lsh/config.s"
+	@echo "... lsh/fiber.o"
+	@echo "... lsh/fiber.i"
+	@echo "... lsh/fiber.s"
 	@echo "... lsh/log.o"
 	@echo "... lsh/log.i"
 	@echo "... lsh/log.s"
@@ -404,6 +469,9 @@ help:
 	@echo "... tests/log/test_config.o"
 	@echo "... tests/log/test_config.i"
 	@echo "... tests/log/test_config.s"
+	@echo "... tests/test_fiber.o"
+	@echo "... tests/test_fiber.i"
+	@echo "... tests/test_fiber.s"
 	@echo "... tests/test_thread.o"
 	@echo "... tests/test_thread.i"
 	@echo "... tests/test_thread.s"

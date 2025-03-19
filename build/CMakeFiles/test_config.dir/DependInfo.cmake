@@ -8,12 +8,12 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/lsh/server_framework/tests/log/test_config.cpp" "CMakeFiles/test_config.dir/tests/log/test_config.cpp.o" "gcc" "CMakeFiles/test_config.dir/tests/log/test_config.cpp.o.d"
+  "/home/lsh/server/learn/tests/log/test_config.cpp" "CMakeFiles/test_config.dir/tests/log/test_config.cpp.o" "gcc" "CMakeFiles/test_config.dir/tests/log/test_config.cpp.o.d"
   )
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/home/lsh/server_framework/build/CMakeFiles/lsh.dir/DependInfo.cmake"
+  "/home/lsh/server/learn/build/CMakeFiles/lsh.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.
