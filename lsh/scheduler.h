@@ -86,6 +86,8 @@ namespace lsh {
 
         virtual bool stopping();
 
+        virtual void idle();
+
         void setThis();
 
     private:
@@ -110,7 +112,7 @@ namespace lsh {
             FiberAndThread ft(fc, thread);
 
             // 如果 Fiber 或 callback 存在，将其加入 m_fibers
-            if (ft.fiber || ft.cb) {
+            if (ft.fiber || ft.callback) {
                 m_fibers.push_back(ft);
             }
 
@@ -161,8 +163,8 @@ namespace lsh {
     protected:
         std::vector<int> m_threadIds;
         size_t m_thread_count{0};
-        size_t m_active_thread_count{0};
-        size_t m_idle_thread_count{0};
+        std::atomic<size_t> m_active_thread_count{0};
+        std::atomic<size_t> m_idle_thread_count{0};
         bool m_stopping{true};
         bool m_autoStop{false};
         int m_root_threadId{0};
