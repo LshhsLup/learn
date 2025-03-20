@@ -35,9 +35,9 @@ namespace lsh {
 
     LogEvent::LogEvent(const char *file, int32_t line, uint32_t elapse,
                        uint32_t threadId, uint32_t fiberId, uint64_t time,
-                       std::shared_ptr<Logger> logger, LogLevel::Level level)
+                       std::shared_ptr<Logger> logger, LogLevel::Level level, std::string threadName)
         : m_file(file), m_line(line), m_elapse(elapse),
-          m_threadId(threadId), m_fiberId(fiberId), m_time(time), m_logger(logger), m_level(level) {}
+          m_threadId(threadId), m_fiberId(fiberId), m_time(time), m_logger(logger), m_level(level), m_threadName(threadName) {}
 
     void LogEvent::format(const char *fmt, ...) {
         va_list al;
@@ -168,7 +168,7 @@ namespace lsh {
             XX(l, LineFormatItem),       // l:行号
             XX(T, TabFormatItem),        // T:Tab
             XX(F, FiberIdFormatItem),    // F:协程id
-            XX(N, ThreadIdFormatItem),   // N:线程名称
+            XX(N, ThreadNameFormatItem), // N:线程名称
 #undef XX
         };
 
@@ -200,6 +200,11 @@ namespace lsh {
     void ThreadIdFormatItem::format(std::ostream &os, std::shared_ptr<Logger> logger,
                                     LogLevel::Level level, std::shared_ptr<LogEvent> event) {
         os << event->getThreadId();
+    }
+
+    void ThreadNameFormatItem::format(std::ostream &os, std::shared_ptr<Logger> logger,
+                                      LogLevel::Level level, std::shared_ptr<LogEvent> event) {
+        os << event->getThreadName();
     }
 
     void FiberIdFormatItem::format(std::ostream &os, std::shared_ptr<Logger> logger,

@@ -24,7 +24,8 @@
     lsh::LogEventWrap(std::make_shared<lsh::LogEvent>(/*相对路径 lsh::getRelativePath(__FILE__)*/ \
                                                       __FILE__, __LINE__, 0,                      \
                                                       lsh::GetThreadId(),                         \
-                                                      lsh::GetFiberId(), time(0), logger, level)) \
+                                                      lsh::GetFiberId(), time(0), logger, level,  \
+                                                      lsh::Thread::GetName()))                    \
         .getSS()
 
 #define LSH_LOG_DEBUG(logger) LSH_LOG_LEVEL(logger, lsh::LogLevel::DEBUG)
@@ -36,12 +37,13 @@
 /**
  * @brief 使用格式化方式将日志级别level的日志事件写入到logger
  */
-#define LSH_LOG_FMT_LEVEL(logger, level, fmt, ...)                                                \
-    if (logger->getLevel() <= level)                                                              \
-    lsh::LogEventWrap(std::make_shared<lsh::LogEvent>(__FILE__, __LINE__, 0,                      \
-                                                      lsh::GetThreadId(),                         \
-                                                      lsh::GetFiberId(), time(0), logger, level)) \
-        .getEvent()                                                                               \
+#define LSH_LOG_FMT_LEVEL(logger, level, fmt, ...)                                               \
+    if (logger->getLevel() <= level)                                                             \
+    lsh::LogEventWrap(std::make_shared<lsh::LogEvent>(__FILE__, __LINE__, 0,                     \
+                                                      lsh::GetThreadId(),                        \
+                                                      lsh::GetFiberId(), time(0), logger, level, \
+                                                      lsh::Thread::GetName()))                   \
+        .getEvent()                                                                              \
         ->format(fmt, __VA_ARGS__)
 
 #define LSH_LOG_FMT_DEBUG(logger, fmt, ...) LSH_LOG_FMT_LEVEL(logger, lsh::LogLevel::DEBUG, fmt, __VA_ARGS__)
@@ -87,7 +89,7 @@ namespace lsh {
     public:
         LogEvent(const char *file, int32_t line, uint32_t elapse,
                  uint32_t threadId, uint32_t fiberId, uint64_t time,
-                 std::shared_ptr<Logger> logger, LogLevel::Level level);
+                 std::shared_ptr<Logger> logger, LogLevel::Level level, std::string threadName);
 
         auto getFile() const -> const char * { return m_file; }
         auto getLine() const -> int32_t { return m_line; }
@@ -99,6 +101,7 @@ namespace lsh {
         std::string getContent() const { return m_stringStream.str(); }
         std::shared_ptr<Logger> getLogger() const { return m_logger; };
         LogLevel::Level getLevel() const { return m_level; }
+        const std::string &getThreadName() const { return m_threadName; }
 
         /**
          * @brief 格式化写入日志内容
@@ -119,6 +122,7 @@ namespace lsh {
         std::stringstream m_stringStream; // 日志内容流
         std::shared_ptr<Logger> m_logger;
         LogLevel::Level m_level;
+        std::string m_threadName;
     };
 
     class LogEventWrap {
@@ -202,6 +206,13 @@ namespace lsh {
     class ThreadIdFormatItem : public LogFormatter::FormatItem {
     public:
         ThreadIdFormatItem(const std::string &str = "") {}
+        void format(std::ostream &os, std::shared_ptr<Logger> logger,
+                    LogLevel::Level level, std::shared_ptr<LogEvent> event) override;
+    };
+
+    class ThreadNameFormatItem : public LogFormatter::FormatItem {
+    public:
+        ThreadNameFormatItem(const std::string &str = "") {}
         void format(std::ostream &os, std::shared_ptr<Logger> logger,
                     LogLevel::Level level, std::shared_ptr<LogEvent> event) override;
     };
