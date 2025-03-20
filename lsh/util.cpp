@@ -1,4 +1,5 @@
 #include "util.h"
+#include "fiber.h"
 #include <execinfo.h> // backtrace, backtrace_symbols
 #include <filesystem>
 
@@ -9,7 +10,7 @@ namespace lsh {
     }
 
     u_int32_t GetFiberId() {
-        return 0;
+        return Fiber::GetFiberId();
     }
 
     // 辅助函数：将绝对路径转换为相对路径并返回 const char*
