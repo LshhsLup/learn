@@ -129,6 +129,9 @@ namespace lsh {
          */
         uint64_t getid() const { return m_id; }
 
+        State getState() const { return m_state; }
+        void setState(State s) { m_state = s; }
+
     public:
         /**
          * 设置当前协程为当前线程的活动协程。
