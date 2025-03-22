@@ -16,7 +16,7 @@
     if (!(x)) {                                                                \
         LSH_LOG_ERROR(LSH_LOG_ROOT) << "ASSERTION: " #x                        \
                                     << "\n"                                    \
-                                    << #w                                      \
+                                    << w                                       \
                                     << "\nbacktrace:\n"                        \
                                     << lsh::BacktraceToString(100, 2, "    "); \
         assert(x);                                                             \
