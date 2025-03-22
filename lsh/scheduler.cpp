@@ -20,7 +20,7 @@ namespace lsh {
             t_schedeluer = this;
 
             // 这个协程是真正执行方法的协程
-            m_root_fiber.reset(new Fiber(std::bind(&Scheduler::run, this)));
+            m_root_fiber.reset(new Fiber(std::bind(&Scheduler::run, this), 0, true));
             Thread::setName(m_name);
 
             t_fiber = m_root_fiber.get();
@@ -58,6 +58,13 @@ namespace lsh {
             m_threads[i].reset(new Thread(std::bind(&Scheduler::run, this), m_name + "_" + std::to_string(i)));
             m_threadIds.push_back(m_threads[i]->getId());
         }
+
+        lock.unlock();
+        // if (m_root_fiber) {
+        //     // m_root_fiber->swapIn();
+        //     m_root_fiber->call();
+        //     LSH_LOG_INFO(g_logger) << "call out";
+        // }
     }
 
     void Scheduler::stop() {
@@ -85,9 +92,35 @@ namespace lsh {
         if (m_root_fiber) {
             tickle();
         }
-        if (stopping()) {
-            return;
+
+        if (m_root_fiber) {
+            // while (!stopping()) {
+
+            //     // if (m_root_fiber->getState() == Fiber::TERM || m_root_fiber->getState() == Fiber::EXCEP) {
+            //     //     m_root_fiber.reset(new Fiber(std::bind(&Scheduler::run, this), 0, true));
+            //     //     LSH_LOG_INFO(g_logger) << " root fiber is term, reset";
+            //     //     t_fiber = m_root_fiber.get();
+            //     // }
+
+            //     m_root_fiber->call();
+            // }
+            if (!stopping()) {
+                m_root_fiber->call();
+            }
         }
+
+        std::vector<Thread::ptr> thrds;
+        {
+            MutexType::Lock lock(m_mutex);
+            thrds.swap(m_threads);
+        }
+
+        for (auto &i : thrds) {
+            i->join();
+        }
+        // if (stopping()) {
+        //     return;
+        // }
         // if
     }
 
@@ -96,6 +129,8 @@ namespace lsh {
     }
 
     void Scheduler::run() {
+        LSH_LOG_INFO(g_logger) << "run";
+        // return;
         setThis();
         if (GetThreadId() != m_root_threadId) {
             t_fiber = Fiber::GetThis().get();
@@ -108,6 +143,7 @@ namespace lsh {
         while (true) {
             ft.reset();
             bool tickle_me = false;
+            bool is_active = false;
             {
                 MutexType::Lock lock(m_mutex);
                 auto it = m_fibers.begin();
@@ -124,6 +160,9 @@ namespace lsh {
                     }
                     ft = *it;
                     m_fibers.erase(it);
+                    ++m_active_thread_count;
+                    is_active = true;
+                    break;
                 }
             }
 
@@ -131,15 +170,15 @@ namespace lsh {
                 tickle();
             }
 
-            if (ft.fiber && (ft.fiber->getState() != Fiber::TERM) || ft.fiber->getState() != Fiber::EXCEP) {
-                ++m_active_thread_count;
+            if (ft.fiber && (ft.fiber->getState() != Fiber::TERM || ft.fiber->getState() != Fiber::EXCEP)) {
+
                 ft.fiber->swapIn();
                 --m_active_thread_count;
 
                 if (ft.fiber->getState() == Fiber::READY) {
                     schedule(ft.fiber);
                 } else if (ft.fiber->getState() != Fiber::EXCEP && ft.fiber->getState() != Fiber::TERM) {
-                    ft.fiber->setState(Fiber::HOLD);
+                    ft.fiber->m_state = Fiber::HOLD;
                 }
 
                 ft.reset();
@@ -151,7 +190,6 @@ namespace lsh {
                 }
 
                 ft.reset();
-                ++m_active_thread_count;
                 cb_fiber->swapIn();
                 --m_active_thread_count;
 
@@ -161,21 +199,42 @@ namespace lsh {
                 } else if (cb_fiber->getState() == Fiber::EXCEP || cb_fiber->getState() == Fiber::TERM) {
                     cb_fiber->reset(nullptr);
                 } else { // if(cb_fiber->getState() != Fiber::TERM){
-                    cb_fiber->setState(Fiber::HOLD);
+                    cb_fiber->m_state = Fiber::HOLD;
                     cb_fiber.reset();
                 }
             } else {
+                if (is_active) {
+                    --m_active_thread_count;
+                    continue;
+                }
                 if (idle_fiber->getState() == Fiber::TERM) {
+                    LSH_LOG_INFO(g_logger) << "idle fiber treminate";
                     break;
                 }
 
                 ++m_idle_thread_count;
                 idle_fiber->swapIn();
                 --m_idle_thread_count;
-                if (idle_fiber->getState() != Fiber::TERM || idle_fiber->getState() != Fiber::EXCEP) {
-                    idle_fiber->setState(Fiber::HOLD);
+                if (idle_fiber->getState() != Fiber::TERM && idle_fiber->getState() != Fiber::EXCEP) {
+                    idle_fiber->m_state = (Fiber::HOLD);
                 }
             }
+        }
+    }
+
+    void Scheduler::tickle() {
+        LSH_LOG_INFO(g_logger) << "tickle";
+    }
+
+    bool Scheduler::stopping() {
+        MutexType::Lock lock(m_mutex);
+        return m_autoStop && m_stopping && m_fibers.empty() && m_active_thread_count == 0;
+    }
+
+    void Scheduler::idle() {
+        LSH_LOG_INFO(g_logger) << "idle";
+        while (!stopping()) {
+            lsh::Fiber::YieldToHold();
         }
     }
 } // namespace lsh

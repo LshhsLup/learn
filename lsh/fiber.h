@@ -70,6 +70,8 @@ namespace lsh {
     // 内核的参与，从而减少了系统资源消耗。
 
     class Fiber : public std::enable_shared_from_this<Fiber> {
+        friend class Scheduler;
+
     public:
         typedef std::shared_ptr<Fiber> ptr;
 
@@ -100,7 +102,7 @@ namespace lsh {
          * @param cb     协程回调函数，协程开始执行时调用。
          * @param stacksize 栈大小，默认为0表示使用默认栈大小。
          */
-        Fiber(std::function<void()> cb, size_t stacksize = 0);
+        Fiber(std::function<void()> cb, size_t stacksize = 0, bool use_caller = false);
 
         /**
          * 析构函数：销毁协程并释放相关资源（例如栈内存）。
@@ -118,6 +120,8 @@ namespace lsh {
          */
         void swapIn();
 
+        void call();
+        void back();
         /**
          * 将当前协程切换到后台执行。将当前协程的上下文保存并切换到另一个协程。
          */
@@ -130,7 +134,7 @@ namespace lsh {
         uint64_t getid() const { return m_id; }
 
         State getState() const { return m_state; }
-        void setState(State s) { m_state = s; }
+        // void setState(State s) { m_state = s; }
 
     public:
         /**
@@ -165,6 +169,8 @@ namespace lsh {
          * 协程的主函数：每个协程从此函数开始执行。会执行协程的回调函数并在执行结束时切换上下文。
          */
         static void MainFunc();
+
+        static void CallerMainFunc();
 
         /**
          * 获取当前协程的ID。

@@ -2,6 +2,7 @@
 #include "config.h"
 #include "log.h"
 #include "macro.h"
+#include "scheduler.h"
 #include <atomic>
 
 namespace lsh {
@@ -59,7 +60,7 @@ namespace lsh {
     }
 
     // 构造函数，创建一个新的协程，指定协程的回调函数和栈大小
-    Fiber::Fiber(std::function<void()> cb, size_t stacksize) {
+    Fiber::Fiber(std::function<void()> cb, size_t stacksize, bool use_caller) {
         m_id = ++s_fiber_id;                                                        // 为协程分配唯一的ID
         m_clalback = cb;                                                            // 设置协程的回调函数
         ++s_fiber_count;                                                            // 协程数量加一
@@ -76,8 +77,12 @@ namespace lsh {
         m_ucontext.uc_stack.ss_sp = m_stack;
         m_ucontext.uc_stack.ss_size = m_stacksize;
 
-        // 设置协程的执行入口函数
-        makecontext(&m_ucontext, &MainFunc, 0);
+        if (!use_caller) {
+            makecontext(&m_ucontext, &MainFunc, 0);
+        } else {
+            makecontext(&m_ucontext, &CallerMainFunc, 0);
+        }
+
         LSH_LOG_DEBUG(g_logger) << "Fiber:Fiber id=" << m_id;
     }
 
@@ -125,6 +130,21 @@ namespace lsh {
         m_state = INIT; // 将协程状态设置为初始化状态
     }
 
+    void Fiber::call() {
+        SetThis(this);
+        m_state = EXEC;
+        if (swapcontext(&t_threadFiber->m_ucontext, &m_ucontext)) {
+            LSH_ASSERT_MSG(false, "swapcontext");
+        }
+    }
+
+    void Fiber::back() {
+        SetThis(t_threadFiber.get());
+        if (swapcontext(&m_ucontext, &t_threadFiber->m_ucontext)) {
+            LSH_ASSERT_MSG(false, "swapcontext");
+        }
+    }
+
     // 切换到当前协程执行
     void Fiber::swapIn() {
         SetThis(this);               // 设置当前协程为活动协程
@@ -132,16 +152,15 @@ namespace lsh {
         m_state = EXEC;              // 设置协程状态为执行中
 
         // 切换上下文，从当前线程的协程切换到当前协程
-        if (swapcontext(&t_threadFiber->m_ucontext, &m_ucontext)) {
+        if (swapcontext(&Scheduler::GetMainFiber()->m_ucontext, &m_ucontext)) {
             LSH_ASSERT_MSG(false, "swapcontext");
         }
     }
 
     // 切换到后台执行当前协程
     void Fiber::swapOut() {
-        SetThis(t_threadFiber.get()); // 设置当前线程的协程为主协程
-        // 切换上下文，从当前协程切换到主协程。
-        if (swapcontext(&m_ucontext, &t_threadFiber->m_ucontext)) {
+        SetThis(Scheduler::GetMainFiber());
+        if (swapcontext(&m_ucontext, &Scheduler::GetMainFiber()->m_ucontext)) {
             LSH_ASSERT_MSG(false, "swapcontext");
         }
     }
@@ -194,15 +213,47 @@ namespace lsh {
             cur->m_state = TERM;       // 将协程状态设置为终止
         } catch (const std::exception &e) {
             cur->m_state = EXCEP; // 发生异常时设置为 EXCEP 状态
-            LSH_LOG_ERROR(g_logger) << "Fiber exception: " << e.what();
+            LSH_LOG_ERROR(g_logger) << "Fiber exception: " << e.what()
+                                    << " fiber id=" << cur->getid()
+                                    << std::endl
+                                    << lsh::BacktraceToString(100, 2, "    ");
         } catch (...) {
             cur->m_state = EXCEP; // 发生未知异常时设置为 EXCEP 状态
-            LSH_LOG_ERROR(g_logger) << "Fiber exception";
+            LSH_LOG_ERROR(g_logger) << "Fiber exception" << std::endl
+                                    << lsh::BacktraceToString(100, 2, "    ");
         }
 
         auto raw_ptr = cur.get();
         cur.reset();
         raw_ptr->swapOut();
+
+        LSH_ASSERT_MSG(false, "never reach fiber_id=" + std::to_string(raw_ptr->getid()));
+    }
+
+    void Fiber::CallerMainFunc() {
+        Fiber::ptr cur = GetThis();
+        LSH_ASSERT(cur); // 确保当前协程有效
+        try {
+            cur->m_clalback();         // 执行协程的回调函数
+            cur->m_clalback = nullptr; // 执行完后清空回调函数
+            cur->m_state = TERM;       // 将协程状态设置为终止
+        } catch (const std::exception &e) {
+            cur->m_state = EXCEP; // 发生异常时设置为 EXCEP 状态
+            LSH_LOG_ERROR(g_logger) << "Fiber exception: " << e.what()
+                                    << " fiber id=" << cur->getid()
+                                    << std::endl
+                                    << lsh::BacktraceToString(100, 2, "    ");
+        } catch (...) {
+            cur->m_state = EXCEP; // 发生未知异常时设置为 EXCEP 状态
+            LSH_LOG_ERROR(g_logger) << "Fiber exception" << std::endl
+                                    << lsh::BacktraceToString(100, 2, "    ");
+        }
+
+        auto raw_ptr = cur.get();
+        cur.reset();
+        raw_ptr->back();
+
+        LSH_ASSERT_MSG(false, "never reach fiber_id=" + std::to_string(raw_ptr->getid()));
     }
 
     // 获取当前活动协程的ID
