@@ -1,7 +1,9 @@
 #ifndef __LSH_MACRO_H__
 #define __LSH_MACRO_H__
 
+#include "log.h"
 #include "util.h"
+#include <assert.h>
 #include <string>
 
 #define LSH_ASSERT(x)                                                          \
