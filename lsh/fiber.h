@@ -186,7 +186,7 @@ namespace lsh {
         ucontext_t m_ucontext;   // 协程的上下文，用于保存协程的状态
         void *m_stack = nullptr; // 协程的栈内存
 
-        std::function<void()> m_clalback; // 协程的回调函数
+        std::function<void()> m_clalback; // 协程的执行方法
     };
 } // namespace lsh
 

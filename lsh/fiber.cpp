@@ -95,7 +95,7 @@ namespace lsh {
             LSH_ASSERT(m_state == TERM || m_state == INIT || m_state == EXCEP);
             StackAllocator::Dealloc(m_stack, m_stacksize);
         } else {
-            // 如果协程没有栈内存，说明是主协程，在销毁时需要清理当前线程的活动协程
+            // 主协程的释放要保证没有任务并且当前正在运行
             LSH_ASSERT(!m_clalback);     // 确保没有回调函数
             LSH_ASSERT(m_state == EXEC); // 确保当前协程是执行状态
             Fiber *cur = t_fiber;
@@ -130,6 +130,7 @@ namespace lsh {
         m_state = INIT; // 将协程状态设置为初始化状态
     }
 
+    // 从线程主协程切换到当前协程
     void Fiber::call() {
         SetThis(this);
         m_state = EXEC;
@@ -138,6 +139,7 @@ namespace lsh {
         }
     }
 
+    // 从当前协程切换到主协程
     void Fiber::back() {
         SetThis(t_threadFiber.get());
         if (swapcontext(&m_ucontext, &t_threadFiber->m_ucontext)) {
@@ -145,19 +147,18 @@ namespace lsh {
         }
     }
 
-    // 切换到当前协程执行
+    // 从调度器的主协程切换到当前协程
     void Fiber::swapIn() {
         SetThis(this);               // 设置当前协程为活动协程
         LSH_ASSERT(m_state != EXEC); // 确保当前协程未在执行中
         m_state = EXEC;              // 设置协程状态为执行中
 
-        // 切换上下文，从当前线程的协程切换到当前协程
         if (swapcontext(&Scheduler::GetMainFiber()->m_ucontext, &m_ucontext)) {
             LSH_ASSERT_MSG(false, "swapcontext");
         }
     }
 
-    // 切换到后台执行当前协程
+    // 从当前协程切换到调度器主协程
     void Fiber::swapOut() {
         SetThis(Scheduler::GetMainFiber());
         if (swapcontext(&m_ucontext, &Scheduler::GetMainFiber()->m_ucontext)) {
