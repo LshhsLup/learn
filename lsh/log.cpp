@@ -258,7 +258,7 @@ namespace lsh {
 
     void TabFormatItem::format(std::ostream &os, std::shared_ptr<Logger> logger,
                                LogLevel::Level level, std::shared_ptr<LogEvent> event) {
-        os << "  ";
+        os << '\t';
     }
 
     void StringFormatItem::format(std::ostream &os, std::shared_ptr<Logger> logger,
