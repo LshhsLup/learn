@@ -18,9 +18,9 @@ namespace lsh {
     const char *getRelativePath(const std::string &absolutePath);
 
     // 获取当前调用栈（Backtrace）并存储到 backtrace 数组中
-    void Backtrace(std::vector<std::string> &backtrace, int size, int skip = 1);
+    void Backtrace(std::vector<std::string> &backtrace, int size = 64, int skip = 1);
     // 获取当前调用栈（Backtrace）并格式化为字符串
-    std::string BacktraceToString(int size, int skip = 2, const std::string &prefix = "");
+    std::string BacktraceToString(int size = 64, int skip = 2, const std::string &prefix = "");
 }
 
 #endif
