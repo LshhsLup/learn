@@ -21,6 +21,10 @@ namespace lsh {
     void Backtrace(std::vector<std::string> &backtrace, int size = 64, int skip = 1);
     // 获取当前调用栈（Backtrace）并格式化为字符串
     std::string BacktraceToString(int size = 64, int skip = 2, const std::string &prefix = "");
+
+    // 时间 ms
+    uint64_t GetCurrentMS();
+    uint64_t GetCurrentUS();
 }
 
 #endif

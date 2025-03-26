@@ -55,7 +55,7 @@ namespace lsh {
             {
                 MutexType::Lock lock(m_mutex);
                 while (begin != end) {
-                    need_tickle = scheduleNoLock(&*begin) || need_tickle;
+                    need_tickle = scheduleNoLock(&*begin, -1) || need_tickle;
                     begin++;
                 }
             }
@@ -74,6 +74,10 @@ namespace lsh {
         virtual void idle();
 
         void setThis();
+
+        bool hasIdleThread() {
+            return m_idle_thread_count > 0;
+        }
 
     private:
         template <class FiberOrCb>

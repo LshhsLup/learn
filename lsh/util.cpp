@@ -2,6 +2,7 @@
 #include "fiber.h"
 #include <execinfo.h> // backtrace, backtrace_symbols
 #include <filesystem>
+#include <sys/time.h>
 
 namespace lsh {
     pid_t GetThreadId() {
@@ -78,4 +79,15 @@ namespace lsh {
         return ss.str();
     }
 
+    uint64_t GetCurrentMS() {
+        struct timeval tv;
+        gettimeofday(&tv, nullptr);
+        return tv.tv_sec * 1000ul + tv.tv_usec / 1000;
+    }
+
+    uint64_t GetCurrentUS() {
+        struct timeval tv;
+        gettimeofday(&tv, nullptr);
+        return tv.tv_sec * 1000 * 1000ul + tv.tv_usec;
+    }
 }

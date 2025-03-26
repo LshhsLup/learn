@@ -1,6 +1,7 @@
 #ifndef __LSH_THREAD_H__
 #define __LSH_THREAD_H__
 
+#include "noncopyable.h"
 #include <atomic>
 #include <functional>
 #include <memory>
@@ -27,7 +28,7 @@ namespace lsh {
      * - **控制线程并发数量**，如限制同时运行的线程数。
      * - **确保线程按特定顺序执行**，如线程创建后按顺序启动 `run()`。
      */
-    class Semaphore {
+    class Semaphore : Noncopyable {
     public:
         /**
          * @brief 构造函数，初始化信号量
@@ -59,12 +60,12 @@ namespace lsh {
          */
         void notify();
 
-    private:
-        // 禁止拷贝和移动，保证信号量对象的唯一性
-        Semaphore(const Semaphore &) = delete;
-        Semaphore(Semaphore &&) = delete;
-        Semaphore &operator=(const Semaphore &) = delete;
-        Semaphore &operator=(Semaphore &&) = delete;
+        // private:
+        //     // 禁止拷贝和移动，保证信号量对象的唯一性
+        //     Semaphore(const Semaphore &) = delete;
+        //     Semaphore(Semaphore &&) = delete;
+        //     Semaphore &operator=(const Semaphore &) = delete;
+        //     Semaphore &operator=(Semaphore &&) = delete;
 
     private:
         sem_t m_semaphore; ///< POSIX 信号量
@@ -123,7 +124,7 @@ namespace lsh {
     /**
      * @brief 基于 pthread_mutex_t 的标准互斥锁
      */
-    class Mutex {
+    class Mutex : Noncopyable {
     public:
         typedef ScopedLockImpl<Mutex> Lock; ///< RAII 方式的锁
 
@@ -152,7 +153,7 @@ namespace lsh {
     /**
      * @brief 空互斥锁（不做任何操作），用于无锁情况下的占位
      */
-    class NULLMutex {
+    class NULLMutex : Noncopyable {
     public:
         typedef ScopedLockImpl<NULLMutex> Lock;
         NULLMutex() {}
@@ -193,7 +194,7 @@ namespace lsh {
     /**
      * @brief CAS（Compare-And-Swap）锁，无需操作系统调用，适用于轻量级同步
      */
-    class CASLock {
+    class CASLock : Noncopyable {
     public:
         typedef ScopedLockImpl<CASLock> Lock;
 
@@ -288,7 +289,7 @@ namespace lsh {
     /**
      * @brief 空的读写锁（不做任何操作），用于无锁环境占位
      */
-    class NULLRWMutex {
+    class NULLRWMutex : Noncopyable {
     public:
         typedef ReadScopedLockImpl<NULLRWMutex> rdlock;
         typedef WriteScopedLockImpl<NULLRWMutex> wrlock;
@@ -302,7 +303,7 @@ namespace lsh {
     /**
      * @brief 读写锁（RWMutex），允许多个读线程但互斥写
      */
-    class RWMutex {
+    class RWMutex : Noncopyable {
     public:
         typedef ReadScopedLockImpl<RWMutex> ReadLock;
         typedef WriteScopedLockImpl<RWMutex> WriteLock;
@@ -335,7 +336,7 @@ namespace lsh {
     };
 
     //=====================================================================================================
-    class Thread {
+    class Thread : Noncopyable {
     public:
         typedef std::shared_ptr<Thread> ptr;
 
@@ -357,12 +358,12 @@ namespace lsh {
         // 设置线程名称
         static void setName(const std::string &name);
 
-    private:
-        // 线程作为不可以拷贝的实体
-        Thread(const Thread &) = delete;
-        Thread(const Thread &&) = delete;
-        Thread &operator=(const Thread &) = delete;
-        Thread &operator=(Thread &&) = delete;
+        // private:
+        //     // 线程作为不可以拷贝的实体
+        //     Thread(const Thread &) = delete;
+        //     Thread(const Thread &&) = delete;
+        //     Thread &operator=(const Thread &) = delete;
+        //     Thread &operator=(Thread &&) = delete;
 
         /**
          * @brief 新线程的启动函数。

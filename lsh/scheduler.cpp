@@ -1,10 +1,11 @@
 #include "scheduler.h"
+#include "hook.h"
 #include "log.h"
 #include "macro.h"
 #include <cassert>
 
 namespace lsh {
-    std::shared_ptr<Logger> g_logger = LSH_LOG_NAME("system");
+    static std::shared_ptr<Logger> g_logger = LSH_LOG_NAME("system");
 
     static thread_local Scheduler *t_schedeluer = nullptr;
     static thread_local Fiber *t_schedeluer_fiber = nullptr;
@@ -152,12 +153,13 @@ namespace lsh {
     void Scheduler::run() {
         LSH_LOG_INFO(g_logger) << "run";
         // return;
+        set_hook_enable(true);
         setThis();
 
         /** ---------------------------------------------------------
          * 不是创建 scheduler 的线程（use_caller = false,或者其他线程）
          * 这个时候的线程就没有 t_thread_fiber 和 t_schedeluer_fiber 之分了，它们是一样的
-         * 也就是没有 m_root_fiber 这个调度器调度线程
+         * 也就是没有 m_root_fiber 这个调度器调度协程
          * 这个时候也就不需要使用 call() 方法了，直接使用 swapIn()
          * swapcontext(&Scheduler::GetMainFiber()->m_ucontext, &m_ucontext)
          * 其他协程直接与 t_schedeluer_fiber 进行切换
