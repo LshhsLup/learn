@@ -1,1 +1,0 @@
-/usr/bin/g++ -g CMakeFiles/test_iomanager.dir/tests/test_iomanager.cpp.o -o ../bin/test_iomanager   -L/home/lsh/yaml/yaml-cpp/build  -Wl,-rpath,/home/lsh/yaml/yaml-cpp/build:/home/lsh/server/learn/lib ../lib/liblsh.so -lyaml-cpp 
