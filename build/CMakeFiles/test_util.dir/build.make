@@ -73,15 +73,15 @@ CMakeFiles/test_util.dir/tests/test_util.cpp.o: CMakeFiles/test_util.dir/flags.m
 CMakeFiles/test_util.dir/tests/test_util.cpp.o: ../tests/test_util.cpp
 CMakeFiles/test_util.dir/tests/test_util.cpp.o: CMakeFiles/test_util.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lsh/server/learn/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/test_util.dir/tests/test_util.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/test_util.dir/tests/test_util.cpp.o -MF CMakeFiles/test_util.dir/tests/test_util.cpp.o.d -o CMakeFiles/test_util.dir/tests/test_util.cpp.o -c /home/lsh/server/learn/tests/test_util.cpp
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/test_util.dir/tests/test_util.cpp.o -MF CMakeFiles/test_util.dir/tests/test_util.cpp.o.d -o CMakeFiles/test_util.dir/tests/test_util.cpp.o -c /home/lsh/server/learn/tests/test_util.cpp
 
 CMakeFiles/test_util.dir/tests/test_util.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/test_util.dir/tests/test_util.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/lsh/server/learn/tests/test_util.cpp > CMakeFiles/test_util.dir/tests/test_util.cpp.i
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/lsh/server/learn/tests/test_util.cpp > CMakeFiles/test_util.dir/tests/test_util.cpp.i
 
 CMakeFiles/test_util.dir/tests/test_util.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/test_util.dir/tests/test_util.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lsh/server/learn/tests/test_util.cpp -o CMakeFiles/test_util.dir/tests/test_util.cpp.s
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lsh/server/learn/tests/test_util.cpp -o CMakeFiles/test_util.dir/tests/test_util.cpp.s
 
 # Object files for target test_util
 test_util_OBJECTS = \

@@ -194,6 +194,106 @@ test_fiber/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_fiber.dir/build.make CMakeFiles/test_fiber.dir/build
 .PHONY : test_fiber/fast
 
+#=============================================================================
+# Target rules for targets named test_scheduler
+
+# Build rule for target.
+test_scheduler: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_scheduler
+.PHONY : test_scheduler
+
+# fast build rule for target.
+test_scheduler/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_scheduler.dir/build.make CMakeFiles/test_scheduler.dir/build
+.PHONY : test_scheduler/fast
+
+#=============================================================================
+# Target rules for targets named test_iomanager
+
+# Build rule for target.
+test_iomanager: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_iomanager
+.PHONY : test_iomanager
+
+# fast build rule for target.
+test_iomanager/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_iomanager.dir/build.make CMakeFiles/test_iomanager.dir/build
+.PHONY : test_iomanager/fast
+
+#=============================================================================
+# Target rules for targets named test_hook
+
+# Build rule for target.
+test_hook: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_hook
+.PHONY : test_hook
+
+# fast build rule for target.
+test_hook/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_hook.dir/build.make CMakeFiles/test_hook.dir/build
+.PHONY : test_hook/fast
+
+#=============================================================================
+# Target rules for targets named test_address
+
+# Build rule for target.
+test_address: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_address
+.PHONY : test_address
+
+# fast build rule for target.
+test_address/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_address.dir/build.make CMakeFiles/test_address.dir/build
+.PHONY : test_address/fast
+
+lsh/IOManager.o: lsh/IOManager.cpp.o
+.PHONY : lsh/IOManager.o
+
+# target to build an object file
+lsh/IOManager.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lsh.dir/build.make CMakeFiles/lsh.dir/lsh/IOManager.cpp.o
+.PHONY : lsh/IOManager.cpp.o
+
+lsh/IOManager.i: lsh/IOManager.cpp.i
+.PHONY : lsh/IOManager.i
+
+# target to preprocess a source file
+lsh/IOManager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lsh.dir/build.make CMakeFiles/lsh.dir/lsh/IOManager.cpp.i
+.PHONY : lsh/IOManager.cpp.i
+
+lsh/IOManager.s: lsh/IOManager.cpp.s
+.PHONY : lsh/IOManager.s
+
+# target to generate assembly for a file
+lsh/IOManager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lsh.dir/build.make CMakeFiles/lsh.dir/lsh/IOManager.cpp.s
+.PHONY : lsh/IOManager.cpp.s
+
+lsh/address.o: lsh/address.cpp.o
+.PHONY : lsh/address.o
+
+# target to build an object file
+lsh/address.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lsh.dir/build.make CMakeFiles/lsh.dir/lsh/address.cpp.o
+.PHONY : lsh/address.cpp.o
+
+lsh/address.i: lsh/address.cpp.i
+.PHONY : lsh/address.i
+
+# target to preprocess a source file
+lsh/address.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lsh.dir/build.make CMakeFiles/lsh.dir/lsh/address.cpp.i
+.PHONY : lsh/address.cpp.i
+
+lsh/address.s: lsh/address.cpp.s
+.PHONY : lsh/address.s
+
+# target to generate assembly for a file
+lsh/address.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lsh.dir/build.make CMakeFiles/lsh.dir/lsh/address.cpp.s
+.PHONY : lsh/address.cpp.s
+
 lsh/config.o: lsh/config.cpp.o
 .PHONY : lsh/config.o
 
@@ -217,6 +317,30 @@ lsh/config.s: lsh/config.cpp.s
 lsh/config.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lsh.dir/build.make CMakeFiles/lsh.dir/lsh/config.cpp.s
 .PHONY : lsh/config.cpp.s
+
+lsh/fd_manager.o: lsh/fd_manager.cpp.o
+.PHONY : lsh/fd_manager.o
+
+# target to build an object file
+lsh/fd_manager.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lsh.dir/build.make CMakeFiles/lsh.dir/lsh/fd_manager.cpp.o
+.PHONY : lsh/fd_manager.cpp.o
+
+lsh/fd_manager.i: lsh/fd_manager.cpp.i
+.PHONY : lsh/fd_manager.i
+
+# target to preprocess a source file
+lsh/fd_manager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lsh.dir/build.make CMakeFiles/lsh.dir/lsh/fd_manager.cpp.i
+.PHONY : lsh/fd_manager.cpp.i
+
+lsh/fd_manager.s: lsh/fd_manager.cpp.s
+.PHONY : lsh/fd_manager.s
+
+# target to generate assembly for a file
+lsh/fd_manager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lsh.dir/build.make CMakeFiles/lsh.dir/lsh/fd_manager.cpp.s
+.PHONY : lsh/fd_manager.cpp.s
 
 lsh/fiber.o: lsh/fiber.cpp.o
 .PHONY : lsh/fiber.o
@@ -242,6 +366,30 @@ lsh/fiber.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lsh.dir/build.make CMakeFiles/lsh.dir/lsh/fiber.cpp.s
 .PHONY : lsh/fiber.cpp.s
 
+lsh/hook.o: lsh/hook.cpp.o
+.PHONY : lsh/hook.o
+
+# target to build an object file
+lsh/hook.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lsh.dir/build.make CMakeFiles/lsh.dir/lsh/hook.cpp.o
+.PHONY : lsh/hook.cpp.o
+
+lsh/hook.i: lsh/hook.cpp.i
+.PHONY : lsh/hook.i
+
+# target to preprocess a source file
+lsh/hook.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lsh.dir/build.make CMakeFiles/lsh.dir/lsh/hook.cpp.i
+.PHONY : lsh/hook.cpp.i
+
+lsh/hook.s: lsh/hook.cpp.s
+.PHONY : lsh/hook.s
+
+# target to generate assembly for a file
+lsh/hook.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lsh.dir/build.make CMakeFiles/lsh.dir/lsh/hook.cpp.s
+.PHONY : lsh/hook.cpp.s
+
 lsh/log.o: lsh/log.cpp.o
 .PHONY : lsh/log.o
 
@@ -266,6 +414,54 @@ lsh/log.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lsh.dir/build.make CMakeFiles/lsh.dir/lsh/log.cpp.s
 .PHONY : lsh/log.cpp.s
 
+lsh/scheduler.o: lsh/scheduler.cpp.o
+.PHONY : lsh/scheduler.o
+
+# target to build an object file
+lsh/scheduler.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lsh.dir/build.make CMakeFiles/lsh.dir/lsh/scheduler.cpp.o
+.PHONY : lsh/scheduler.cpp.o
+
+lsh/scheduler.i: lsh/scheduler.cpp.i
+.PHONY : lsh/scheduler.i
+
+# target to preprocess a source file
+lsh/scheduler.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lsh.dir/build.make CMakeFiles/lsh.dir/lsh/scheduler.cpp.i
+.PHONY : lsh/scheduler.cpp.i
+
+lsh/scheduler.s: lsh/scheduler.cpp.s
+.PHONY : lsh/scheduler.s
+
+# target to generate assembly for a file
+lsh/scheduler.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lsh.dir/build.make CMakeFiles/lsh.dir/lsh/scheduler.cpp.s
+.PHONY : lsh/scheduler.cpp.s
+
+lsh/socket.o: lsh/socket.cpp.o
+.PHONY : lsh/socket.o
+
+# target to build an object file
+lsh/socket.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lsh.dir/build.make CMakeFiles/lsh.dir/lsh/socket.cpp.o
+.PHONY : lsh/socket.cpp.o
+
+lsh/socket.i: lsh/socket.cpp.i
+.PHONY : lsh/socket.i
+
+# target to preprocess a source file
+lsh/socket.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lsh.dir/build.make CMakeFiles/lsh.dir/lsh/socket.cpp.i
+.PHONY : lsh/socket.cpp.i
+
+lsh/socket.s: lsh/socket.cpp.s
+.PHONY : lsh/socket.s
+
+# target to generate assembly for a file
+lsh/socket.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lsh.dir/build.make CMakeFiles/lsh.dir/lsh/socket.cpp.s
+.PHONY : lsh/socket.cpp.s
+
 lsh/thread.o: lsh/thread.cpp.o
 .PHONY : lsh/thread.o
 
@@ -289,6 +485,30 @@ lsh/thread.s: lsh/thread.cpp.s
 lsh/thread.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lsh.dir/build.make CMakeFiles/lsh.dir/lsh/thread.cpp.s
 .PHONY : lsh/thread.cpp.s
+
+lsh/timer.o: lsh/timer.cpp.o
+.PHONY : lsh/timer.o
+
+# target to build an object file
+lsh/timer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lsh.dir/build.make CMakeFiles/lsh.dir/lsh/timer.cpp.o
+.PHONY : lsh/timer.cpp.o
+
+lsh/timer.i: lsh/timer.cpp.i
+.PHONY : lsh/timer.i
+
+# target to preprocess a source file
+lsh/timer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lsh.dir/build.make CMakeFiles/lsh.dir/lsh/timer.cpp.i
+.PHONY : lsh/timer.cpp.i
+
+lsh/timer.s: lsh/timer.cpp.s
+.PHONY : lsh/timer.s
+
+# target to generate assembly for a file
+lsh/timer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lsh.dir/build.make CMakeFiles/lsh.dir/lsh/timer.cpp.s
+.PHONY : lsh/timer.cpp.s
 
 lsh/util.o: lsh/util.cpp.o
 .PHONY : lsh/util.o
@@ -362,6 +582,30 @@ tests/log/test_config.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_config.dir/build.make CMakeFiles/test_config.dir/tests/log/test_config.cpp.s
 .PHONY : tests/log/test_config.cpp.s
 
+tests/test_address.o: tests/test_address.cpp.o
+.PHONY : tests/test_address.o
+
+# target to build an object file
+tests/test_address.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_address.dir/build.make CMakeFiles/test_address.dir/tests/test_address.cpp.o
+.PHONY : tests/test_address.cpp.o
+
+tests/test_address.i: tests/test_address.cpp.i
+.PHONY : tests/test_address.i
+
+# target to preprocess a source file
+tests/test_address.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_address.dir/build.make CMakeFiles/test_address.dir/tests/test_address.cpp.i
+.PHONY : tests/test_address.cpp.i
+
+tests/test_address.s: tests/test_address.cpp.s
+.PHONY : tests/test_address.s
+
+# target to generate assembly for a file
+tests/test_address.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_address.dir/build.make CMakeFiles/test_address.dir/tests/test_address.cpp.s
+.PHONY : tests/test_address.cpp.s
+
 tests/test_fiber.o: tests/test_fiber.cpp.o
 .PHONY : tests/test_fiber.o
 
@@ -385,6 +629,78 @@ tests/test_fiber.s: tests/test_fiber.cpp.s
 tests/test_fiber.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_fiber.dir/build.make CMakeFiles/test_fiber.dir/tests/test_fiber.cpp.s
 .PHONY : tests/test_fiber.cpp.s
+
+tests/test_hook.o: tests/test_hook.cpp.o
+.PHONY : tests/test_hook.o
+
+# target to build an object file
+tests/test_hook.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_hook.dir/build.make CMakeFiles/test_hook.dir/tests/test_hook.cpp.o
+.PHONY : tests/test_hook.cpp.o
+
+tests/test_hook.i: tests/test_hook.cpp.i
+.PHONY : tests/test_hook.i
+
+# target to preprocess a source file
+tests/test_hook.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_hook.dir/build.make CMakeFiles/test_hook.dir/tests/test_hook.cpp.i
+.PHONY : tests/test_hook.cpp.i
+
+tests/test_hook.s: tests/test_hook.cpp.s
+.PHONY : tests/test_hook.s
+
+# target to generate assembly for a file
+tests/test_hook.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_hook.dir/build.make CMakeFiles/test_hook.dir/tests/test_hook.cpp.s
+.PHONY : tests/test_hook.cpp.s
+
+tests/test_iomanager.o: tests/test_iomanager.cpp.o
+.PHONY : tests/test_iomanager.o
+
+# target to build an object file
+tests/test_iomanager.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_iomanager.dir/build.make CMakeFiles/test_iomanager.dir/tests/test_iomanager.cpp.o
+.PHONY : tests/test_iomanager.cpp.o
+
+tests/test_iomanager.i: tests/test_iomanager.cpp.i
+.PHONY : tests/test_iomanager.i
+
+# target to preprocess a source file
+tests/test_iomanager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_iomanager.dir/build.make CMakeFiles/test_iomanager.dir/tests/test_iomanager.cpp.i
+.PHONY : tests/test_iomanager.cpp.i
+
+tests/test_iomanager.s: tests/test_iomanager.cpp.s
+.PHONY : tests/test_iomanager.s
+
+# target to generate assembly for a file
+tests/test_iomanager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_iomanager.dir/build.make CMakeFiles/test_iomanager.dir/tests/test_iomanager.cpp.s
+.PHONY : tests/test_iomanager.cpp.s
+
+tests/test_scheduler.o: tests/test_scheduler.cpp.o
+.PHONY : tests/test_scheduler.o
+
+# target to build an object file
+tests/test_scheduler.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_scheduler.dir/build.make CMakeFiles/test_scheduler.dir/tests/test_scheduler.cpp.o
+.PHONY : tests/test_scheduler.cpp.o
+
+tests/test_scheduler.i: tests/test_scheduler.cpp.i
+.PHONY : tests/test_scheduler.i
+
+# target to preprocess a source file
+tests/test_scheduler.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_scheduler.dir/build.make CMakeFiles/test_scheduler.dir/tests/test_scheduler.cpp.i
+.PHONY : tests/test_scheduler.cpp.i
+
+tests/test_scheduler.s: tests/test_scheduler.cpp.s
+.PHONY : tests/test_scheduler.s
+
+# target to generate assembly for a file
+tests/test_scheduler.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_scheduler.dir/build.make CMakeFiles/test_scheduler.dir/tests/test_scheduler.cpp.s
+.PHONY : tests/test_scheduler.cpp.s
 
 tests/test_thread.o: tests/test_thread.cpp.o
 .PHONY : tests/test_thread.o
@@ -444,22 +760,47 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... lsh"
 	@echo "... test"
+	@echo "... test_address"
 	@echo "... test_config"
 	@echo "... test_fiber"
+	@echo "... test_hook"
+	@echo "... test_iomanager"
+	@echo "... test_scheduler"
 	@echo "... test_thread"
 	@echo "... test_util"
+	@echo "... lsh/IOManager.o"
+	@echo "... lsh/IOManager.i"
+	@echo "... lsh/IOManager.s"
+	@echo "... lsh/address.o"
+	@echo "... lsh/address.i"
+	@echo "... lsh/address.s"
 	@echo "... lsh/config.o"
 	@echo "... lsh/config.i"
 	@echo "... lsh/config.s"
+	@echo "... lsh/fd_manager.o"
+	@echo "... lsh/fd_manager.i"
+	@echo "... lsh/fd_manager.s"
 	@echo "... lsh/fiber.o"
 	@echo "... lsh/fiber.i"
 	@echo "... lsh/fiber.s"
+	@echo "... lsh/hook.o"
+	@echo "... lsh/hook.i"
+	@echo "... lsh/hook.s"
 	@echo "... lsh/log.o"
 	@echo "... lsh/log.i"
 	@echo "... lsh/log.s"
+	@echo "... lsh/scheduler.o"
+	@echo "... lsh/scheduler.i"
+	@echo "... lsh/scheduler.s"
+	@echo "... lsh/socket.o"
+	@echo "... lsh/socket.i"
+	@echo "... lsh/socket.s"
 	@echo "... lsh/thread.o"
 	@echo "... lsh/thread.i"
 	@echo "... lsh/thread.s"
+	@echo "... lsh/timer.o"
+	@echo "... lsh/timer.i"
+	@echo "... lsh/timer.s"
 	@echo "... lsh/util.o"
 	@echo "... lsh/util.i"
 	@echo "... lsh/util.s"
@@ -469,9 +810,21 @@ help:
 	@echo "... tests/log/test_config.o"
 	@echo "... tests/log/test_config.i"
 	@echo "... tests/log/test_config.s"
+	@echo "... tests/test_address.o"
+	@echo "... tests/test_address.i"
+	@echo "... tests/test_address.s"
 	@echo "... tests/test_fiber.o"
 	@echo "... tests/test_fiber.i"
 	@echo "... tests/test_fiber.s"
+	@echo "... tests/test_hook.o"
+	@echo "... tests/test_hook.i"
+	@echo "... tests/test_hook.s"
+	@echo "... tests/test_iomanager.o"
+	@echo "... tests/test_iomanager.i"
+	@echo "... tests/test_iomanager.s"
+	@echo "... tests/test_scheduler.o"
+	@echo "... tests/test_scheduler.i"
+	@echo "... tests/test_scheduler.s"
 	@echo "... tests/test_thread.o"
 	@echo "... tests/test_thread.i"
 	@echo "... tests/test_thread.s"
