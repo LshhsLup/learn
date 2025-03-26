@@ -1,0 +1,1 @@
+/usr/bin/g++ -g CMakeFiles/test_hook.dir/tests/test_hook.cpp.o -o ../bin/test_hook   -L/home/lsh/yaml/yaml-cpp/build  -Wl,-rpath,/home/lsh/yaml/yaml-cpp/build:/home/lsh/server/learn/lib ../lib/liblsh.so -lyaml-cpp 
